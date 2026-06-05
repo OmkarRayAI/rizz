@@ -18,10 +18,10 @@ The pitch line:
 
 ```bash
 # 1. Install the Python engine.
-pip install rizz                   # or `pip install -e .` from a clone
+pip install rizz-engine            # or `pip install -e .` from a clone
 
 # 2. Add the rizz marketplace and install the plugin.
-/plugin marketplace add <owner>/rizz
+/plugin marketplace add OmkarRayAI/rizz
 /plugin install rizz@rizz
 ```
 

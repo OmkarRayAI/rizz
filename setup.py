@@ -18,7 +18,7 @@ def read_requirements():
     return []
 
 setup(
-    name="rizz",
+    name="rizz-engine",
     version="0.1.0",
     packages=find_packages(),
     install_requires=read_requirements(),
