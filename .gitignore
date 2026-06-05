@@ -1,0 +1,25 @@
+.rizz/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.eggs/
+*.egg-info/
+
+# Local Claude Code session state (allowed permissions for this checkout).
+# .claude/skills/ is intentionally NOT ignored — project-local skills can ship.
+.claude/settings.local.json
+.claude/settings.json
+
+# OS detritus
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+
+# Build / dist
+build/
+dist/
+*.egg
+

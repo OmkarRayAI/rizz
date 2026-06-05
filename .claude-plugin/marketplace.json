@@ -1,0 +1,14 @@
+{
+  "name": "rizz",
+  "description": "rizz — auto-decomposed coding agents that ship merge-ready PRs from a goal in plain English.",
+  "owner": {
+    "name": "rizz authors"
+  },
+  "plugins": [
+    {
+      "name": "rizz",
+      "source": ".",
+      "description": "Goal in, parallel branches out, PRs opened. Slash commands: /rizz:ship and /rizz:plan."
+    }
+  ]
+}

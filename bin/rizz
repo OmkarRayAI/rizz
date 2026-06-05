@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# bin/rizz — plugin wrapper that delegates to the installed `rizz` Python package.
+#
+# Requires: pip install rizz  (or `pip install -e .` from the plugin checkout
+# during development).
+#
+# Claude Code's plugin loader adds this `bin/` directory to PATH automatically,
+# so skills can shell out to `rizz` directly without `python -m`.
+
+exec python3 -m rizz "$@"

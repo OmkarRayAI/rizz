@@ -1,0 +1,6 @@
+{
+  "name": "rizz",
+  "description": "Auto-decompose a goal into parallel branches, run coding agents in isolated git worktrees, and open merge-ready PRs.",
+  "version": "0.1.0",
+  "license": "MIT"
+}
