@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "rizz",
-      "source": ".",
+      "source": "./plugins/rizz",
       "description": "Goal in, parallel branches out, PRs opened. Slash commands: /rizz:ship and /rizz:plan."
     }
   ]
