@@ -168,7 +168,38 @@ class AutomatedToolGenerator:
         generated = []
 
         for cfg in tools_list:
+            # Direct-instance path: an already-constructed object exposing
+            # `.get_tool()` (e.g. a `CodingAgent` subclass like
+            # `ClaudeCodeAgent`). Skips folder discovery entirely so agents
+            # that don't live in `rizz/tools/` and don't end in `Tool` work.
+            instance = cfg.get("instance")
+            if instance is not None and hasattr(instance, "get_tool"):
+                generated.append(instance.get_tool())
+                continue
+
             key = cfg.get("class")
+
+            # Direct-class path: `class` is a class object, not a string.
+            # Lets callers pass `ClaudeCodeAgent` (the class itself) plus
+            # init kwargs without registering it in the discovery table.
+            if inspect.isclass(key):
+                tool_cls = key
+                required = self._get_init_params(tool_cls)
+                if "kwargs" in cfg and isinstance(cfg["kwargs"], dict):
+                    init_kwargs = {k: v for k, v in cfg.items() if k in required and k != "kwargs"}
+                    for k, v in cfg["kwargs"].items():
+                        if k in required:
+                            init_kwargs[k] = v
+                else:
+                    init_kwargs = {k: v for k, v in cfg.items() if k in required and k != "class"}
+                init_kwargs.setdefault("name", cfg.get("name", tool_cls.__name__))
+                try:
+                    obj = tool_cls(**init_kwargs)
+                    generated.append(obj.get_tool())
+                except Exception as e:
+                    print(f"Error instantiating {tool_cls.__name__}: {e}")
+                continue
+
             if not key or key not in self.available_tools:
                 print(f"Warning: '{key}' not found or missing in config")
                 continue
